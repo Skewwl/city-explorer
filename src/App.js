@@ -6,7 +6,7 @@ function App() {
   return (
     <Container className="App">
       <h1>City Explorer</h1>
-      {/* <img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Rotating_earth_animated_transparent.gif" alt="Rotating earth" /> */}
+      <img className="globe" src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Rotating_earth_animated_transparent.gif" alt="Rotating earth" />
       <SearchBar />
     </Container>
   );
