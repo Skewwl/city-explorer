@@ -25,18 +25,21 @@ Axios
 
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+icons8.com - browswer icon
+NASA Goddard Space Flight Center - rotating earth gif
+LocationIQ - city data
 
 ------------------------------------------------------------------------------
 
 Name of feature: 06
 
-Estimate of time needed to complete: 4 hour
+Estimate of time needed to complete: 4 hours
 
 Start time: 10a
 
-Finish time: 
+Finish time: 8pm
 
-Actual time needed to complete: 
+Actual time needed to complete: 10 hours
 
 ------------------------------------------------------------------------------
 
