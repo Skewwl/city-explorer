@@ -1,5 +1,7 @@
 .App {
- margin: 10%;
+ margin: 5%;
+ padding: 5%;
+ background-color: bisque;
 }
 
 h1{
@@ -10,12 +12,12 @@ h1{
   font-weight: 800;
 }
 
-img{
+.globe{
   float: right;
   width: 20%;
   margin-top: -15%;
 }
 
 div.card{
-  margin-top: 1rem;
+  margin: 1rem 1rem;
 }

@@ -15,11 +15,11 @@ function SearchBar() {
 
     let handleExplore = async (e) => {
         e.preventDefault();
-        let url = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${city}&format=json`;
-        const response = await axios.get(url);
+        let infoUrl = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${city}&format=json`;
+        const response = await axios.get(infoUrl);
         setDisplayInfo(true);
         setRecievedData(response.data);
-        // console.log(response.data, displayInfo);
+        console.log(response.data);
     };
 
     return (
