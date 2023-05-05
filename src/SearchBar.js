@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import CityData from './CityData';
-import DisplayError from './DisplayError';
+import Modal from 'react-bootstrap/Modal';
 
 function SearchBar() {
 
@@ -13,7 +13,9 @@ function SearchBar() {
     let [city, setCity] = useState();
     let [recievedData, setRecievedData] = useState({});
     let [err, setErr] = useState(null);
+    let [show, setShow] = useState(false);
 
+    const handleClose = () => setShow(false);
 
     let handleExplore = async (e) => {
         e.preventDefault();
@@ -27,6 +29,7 @@ function SearchBar() {
         catch (error) {
             console.error(error);
             setErr(error.message);
+            setShow(true);
         }
     };
 
@@ -47,7 +50,18 @@ function SearchBar() {
                 <Col></Col>
             </Row>
             <CityData className="city-data" displayInfo={displayInfo} recievedData={recievedData} />
-            <DisplayError error={err}/>
+            
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Error</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>{err}</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={handleClose}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </>
     );
 }
