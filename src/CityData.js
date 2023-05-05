@@ -24,7 +24,6 @@ function CityData(props) {
             <Col>
             </Col>
         </Row>
-
     );
 }
 
