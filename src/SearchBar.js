@@ -6,12 +6,14 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import CityData from './CityData';
 import Modal from 'react-bootstrap/Modal';
+import Weather from './Weather';
 
 function SearchBar() {
 
     let [displayInfo, setDisplayInfo] = useState(false);
     let [city, setCity] = useState();
     let [recievedData, setRecievedData] = useState({});
+    let [weatherData, setWeatherData] = useState();
     let [err, setErr] = useState(null);
     let [show, setShow] = useState(false);
 
@@ -25,11 +27,17 @@ function SearchBar() {
             responsePromise && setDisplayInfo(true);
             setRecievedData(responsePromise.data);
             setErr(null);
+            // console.log(recievedData[0].display_name.split(',')[0], city);
+            let weatherUrl = `http://localhost:3001/weather?searchQuery=${city}`;
+            const responsePromiseWeather = await axios.get(weatherUrl);
+            setWeatherData(responsePromiseWeather.data);
         }
         catch (error) {
             console.error(error);
             setErr(error.message);
             setShow(true);
+            setWeatherData(null);
+            setDisplayInfo(false);
         }
     };
 
@@ -50,18 +58,23 @@ function SearchBar() {
                 <Col></Col>
             </Row>
             <CityData className="city-data" displayInfo={displayInfo} recievedData={recievedData} />
-            
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Error</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>{err}</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="primary" onClick={handleClose}>
-                        Close
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+            <Row>
+                <Col md={8}>
+                    <Modal show={show} onHide={handleClose}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Error</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>{err}</Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="primary" onClick={handleClose}>
+                                Close
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
+                </Col>
+                <Col></Col>
+            </Row>
+            <Weather weather={weatherData} />
         </>
     );
 }
