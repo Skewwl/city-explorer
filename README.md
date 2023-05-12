@@ -1,3 +1,5 @@
+# City Explorer Front End
+
 **Author**: Rhett Beardemphl
 **Version**: 1.0.0
 
@@ -42,7 +44,5 @@ Finish time: 8pm
 Actual time needed to complete: 10 hours
 
 ------------------------------------------------------------------------------
-
-
 
 ------------------------------------------------------------------------------
