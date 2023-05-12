@@ -31,7 +31,7 @@ function SearchBar() {
             // setErr(null);
             const lat = responsePromise.data[0].lat;
             const lon = responsePromise.data[0].lon;
-            let weatherUrl = `http://localhost:3001/weather?lat=${lat}&lon=${lon}`;
+            let weatherUrl = `${process.env.REACT_APP_SERVER}/weather?lat=${lat}&lon=${lon}`;
             console.log(weatherUrl);
             const responsePromiseWeather = await axios.get(weatherUrl);
             setWeatherData(responsePromiseWeather.data);
