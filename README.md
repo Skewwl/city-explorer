@@ -29,7 +29,9 @@ Axios
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 icons8.com - browswer icon
 NASA Goddard Space Flight Center - rotating earth gif
-LocationIQ - city data
+LocationIQ - city data api
+weatherbit - weatherdata api
+themoviedb - movie data api
 
 ------------------------------------------------------------------------------
 

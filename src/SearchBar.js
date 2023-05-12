@@ -78,7 +78,7 @@ function SearchBar() {
                 </Col>
                 <Col></Col>
             </Row>
-            <Weather weather={weatherData} />
+            <Weather weather={weatherData} city={city} />
         </>
     );
 }
