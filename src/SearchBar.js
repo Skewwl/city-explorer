@@ -19,30 +19,28 @@ function SearchBar() {
 
     const handleClose = () => setShow(false);
 
-    let handleExplore = async (e) => {
+    let handleExplore = (e) => {
         e.preventDefault();
-        try {
-            let infoUrl = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${city}&format=json`;
-            const responsePromise = await axios.get(infoUrl);
-            if (responsePromise) {
+        let infoUrl = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${city}&format=json`;
+        axios.get(infoUrl)
+            .then(res => {
                 setDisplayInfo(true);
-            };
-            setRecievedData(responsePromise.data);
-            // setErr(null);
-            const lat = responsePromise.data[0].lat;
-            const lon = responsePromise.data[0].lon;
-            let weatherUrl = `${process.env.REACT_APP_SERVER}/weather?lat=${lat}&lon=${lon}`;
-            console.log(weatherUrl);
-            const responsePromiseWeather = await axios.get(weatherUrl);
-            setWeatherData(responsePromiseWeather.data);
-        }
-        catch (error) {
-            console.error(error);
-            setErr(error.message);
-            setShow(true);
-            setWeatherData(null);
-            setDisplayInfo(false);
-        }
+                setRecievedData(res.data);
+                let latLon = {'lat': res.data[0].lat, 'lon': res.data[0].lon };
+                return latLon;
+            })
+            .then(latLon => {
+                let weatherUrl = `${process.env.REACT_APP_SERVER}/weather?lat=${latLon.lat}&lon=${latLon.lon}`;
+                axios.get(weatherUrl)
+                    .then(res => setWeatherData(res.data));
+            })
+            .catch(error => {
+                console.error(error);
+                setErr(error.message);
+                setShow(true);
+                setWeatherData(null);
+                setDisplayInfo(false);
+            });
     };
 
     return (
@@ -84,36 +82,3 @@ function SearchBar() {
 }
 
 export default SearchBar;
-
-// const locationIQRequest = async () => {
-//     try {
-//         let infoUrl = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${city}&format=json`;
-//         const responsePromise = await axios.get(infoUrl);
-//         if (responsePromise) {
-//             setDisplayInfo(true);
-//         };
-//         setRecievedData(responsePromise.data);
-//         // setErr(null);
-//     } catch (error) {
-//         console.error(error);
-//         setErr(error.message);
-//         setShow(true);
-//         setWeatherData(null);
-//         setDisplayInfo(false);
-//     }
-// } 
-
-// const myServerRequest = async () => {
-//     try{
-//         let weatherUrl = `http://localhost:3001/weather?lat=${recievedData[0].lat}&lon=${recievedData[0].lon}`;
-//         console.log(weatherUrl);
-//         const responsePromiseWeather = await axios.get(weatherUrl);
-//         setWeatherData(responsePromiseWeather.data);
-//     } catch (error) {
-//         console.error(error);
-//         setErr(error.message);
-//         setShow(true);
-//         setWeatherData(null);
-//         setDisplayInfo(false);
-//     }
-// }
