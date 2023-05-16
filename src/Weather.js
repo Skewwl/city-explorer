@@ -20,8 +20,8 @@ function Weather(props) {
                 return (
                     <Row key={idx}>
                         <p>{day.description}</p>
-                        <p>Weather data gathered at:{day.date}.</p>
-                        <p>From UTC timezone, 7-8 hours ahead of PST.</p>
+                        <p className='asteris'>Weather data gathered at: {day.date}.</p>
+                        <p className='asteris'>*The time comes from the UTC timezone, 7-8 hours ahead of PST.</p>
                     </Row>
                 )
             })
@@ -40,6 +40,7 @@ function Weather(props) {
             <Row>
                 <Col md={8} className='weather-data'>
                     <Card>
+                        <Card.Title>Today's Weather:</Card.Title>
                         <Card.Body>
                             {displayWeather()}
                         </Card.Body>
