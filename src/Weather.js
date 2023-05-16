@@ -29,7 +29,7 @@ function Weather(props) {
     }
 
     let getMovies = async () => {
-        let movieUrl = `http://localhost:3001/movies?&city=${props.city}`;
+        let movieUrl = `${process.env.REACT_APP_SERVER}/movies?&city=${props.city}`;
         let moviesResponse = await axios.get(movieUrl);
         setMoviesList(moviesResponse.data.slice(0, 5));
     }
